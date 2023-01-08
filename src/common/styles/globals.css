@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Gmarket";
+  src: url("/fonts/GmarketSansBold.otf");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/PretendardVariable.ttf");
+}
+
+html {
+  font-family: "pretendard";
+}
