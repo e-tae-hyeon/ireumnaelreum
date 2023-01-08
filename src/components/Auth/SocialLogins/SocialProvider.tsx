@@ -1,3 +1,4 @@
+import { KAKAO_REDIRECT_URI } from "common/constants/string";
 import { SvgIcon } from "components/@base";
 import React from "react";
 
@@ -9,7 +10,7 @@ type Props = {
 
 const providerMap = {
   kakao: {
-    to: "/",
+    to: `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID}&redirect_uri=${KAKAO_REDIRECT_URI}`,
     icon: "kakao" as const,
     description: "카카오로 시작하기",
     bgColor: "#FEE500",
@@ -23,7 +24,7 @@ function SocialProvider({ provider }: Props) {
   return (
     <a
       href={to}
-      className="flex justify-center items-center gap-2 rounded-lg py-4 px-8 w-full"
+      className="flex items-center justify-center w-full gap-2 px-8 py-4 rounded-lg"
       style={{ backgroundColor: bgColor }}
     >
       <SvgIcon name={icon} color={accentColor} />
