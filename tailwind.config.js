@@ -5,7 +5,15 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        primary: ["Gmarket"],
+      },
+      colors: {
+        primary: "#2563EB",
+        black: "#171717",
+      },
+    },
   },
   plugins: [],
 };
