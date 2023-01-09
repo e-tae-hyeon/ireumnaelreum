@@ -2,13 +2,18 @@ import { AuthModal } from "components/Auth";
 import React from "react";
 
 type Props = {
+  width?: "wide" | "narrow";
   children: React.ReactNode;
 };
 
-function Layout({ children }: Props) {
+function Layout({ width = "wide", children }: Props) {
   return (
     <>
-      <div className="mx-auto max-w-5xl">{children}</div>
+      <div
+        className={`${width === "wide" ? "max-w-5xl" : "max-w-3xl"} mx-auto`}
+      >
+        {children}
+      </div>
       <AuthModal />
     </>
   );
