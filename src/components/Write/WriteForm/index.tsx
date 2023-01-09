@@ -19,7 +19,7 @@ function WriteForm() {
         placeholder="제목을 입력해주세요!"
         value={form.title}
         onChange={onChange}
-        className="py-4 border-b outline-none h2 placeholder:text-neutral-200 border-neutral-200"
+        className="py-4 border-b outline-none h3 placeholder:text-neutral-200 border-neutral-200"
       />
       <TextareaAutosize
         name="body"
