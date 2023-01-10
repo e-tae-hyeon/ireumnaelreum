@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 type Props = {
@@ -10,7 +11,10 @@ type Props = {
 
 function ItemCard({ id, author, title, body, date }: Props) {
   return (
-    <div className="flex flex-col gap-2 p-8 border rounded-lg border-neutral-200">
+    <Link
+      href={`/item/${id}`}
+      className="flex flex-col gap-2 p-8 duration-150 border rounded-lg border-neutral-200 hover:-translate-y-1 hover:shadow-lg"
+    >
       <div className="flex flex-col">
         <h3 className="body1 h-14">{title}</h3>
         <div className="truncate body2 text-neutral-400">{body}</div>
@@ -18,7 +22,7 @@ function ItemCard({ id, author, title, body, date }: Props) {
       <div className="caption text-neutral-400">
         {author} | {date}
       </div>
-    </div>
+    </Link>
   );
 }
 
