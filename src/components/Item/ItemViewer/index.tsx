@@ -3,6 +3,8 @@ import { getItem } from "apis/item";
 import useMe from "hooks/useMe";
 import { useRouter } from "next/router";
 import React from "react";
+import CommentForm from "../CommentForm";
+import CommentList from "../CommentList";
 import ItemOwnActions from "../ItemOwnActions";
 
 function ItemViewer() {
@@ -33,6 +35,8 @@ function ItemViewer() {
         </div>
       </div>
       <p>{body}</p>
+      <CommentForm />
+      <CommentList />
     </div>
   );
 }
