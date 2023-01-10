@@ -7,6 +7,7 @@ import {
 import "common/styles/globals.css";
 import type { AppProps } from "next/app";
 import { useState } from "react";
+import { ClientProvider } from "components/@module";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -15,7 +16,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <Hydrate state={pageProps.dehydratedState}>
-        <Component {...pageProps} />
+        <ClientProvider>
+          <Component {...pageProps} />
+        </ClientProvider>
       </Hydrate>
     </QueryClientProvider>
   );

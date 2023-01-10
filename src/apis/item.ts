@@ -37,6 +37,12 @@ export async function getComments(itemId: number) {
   return res.data;
 }
 
+export async function removeItem(itemId: number) {
+  const res = await clinet.delete(`/item/${itemId}`);
+
+  return res.data;
+}
+
 export async function likeComment({
   itemId,
   commentId,
