@@ -8,6 +8,10 @@ export type GetItemsResult = {
   pageInfo: PageInfo;
 };
 
+export type UpdateItemParam = {
+  itemId: number;
+} & WriteItemParam;
+
 export type WriteCommentParam = {
   itemId: number;
   text: string;

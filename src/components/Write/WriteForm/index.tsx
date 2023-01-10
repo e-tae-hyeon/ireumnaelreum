@@ -1,9 +1,23 @@
-import React from "react";
+import { getItem } from "apis/item";
+import useItemId from "hooks/useItemId";
+import React, { useEffect } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import useWriteStore from "stores/useWriteStore";
 
 function WriteForm() {
-  const { form, changeForm } = useWriteStore();
+  const itemId = useItemId();
+  const { form, changeForm, clearForm } = useWriteStore();
+
+  useEffect(() => {
+    clearForm();
+    const fetchForm = async (id: number) => {
+      const item = await getItem(id);
+      changeForm({ name: "title", value: item.title });
+      changeForm({ name: "body", value: item.body });
+    };
+    if (!itemId) return;
+    fetchForm(itemId);
+  }, [itemId]);
 
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

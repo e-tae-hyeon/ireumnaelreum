@@ -3,12 +3,13 @@ import {
   Comment,
   GetItemsResult,
   Item,
+  UpdateItemParam,
   WriteCommentParam,
   WriteItemParam,
 } from "./types";
 
 export async function writeItem(param: WriteItemParam) {
-  const res = await clinet.post("/item", param);
+  const res = await clinet.post<Item>("/item", param);
 
   return res.data;
 }
@@ -33,6 +34,12 @@ export async function writeComment({ itemId, text }: WriteCommentParam) {
 
 export async function getComments(itemId: number) {
   const res = await clinet.get<Comment[]>(`/item/${itemId}/comment`);
+
+  return res.data;
+}
+
+export async function updateItem({ itemId, title, body }: UpdateItemParam) {
+  const res = await clinet.put(`/item/${itemId}`, { title, body });
 
   return res.data;
 }

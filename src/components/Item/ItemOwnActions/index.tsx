@@ -33,7 +33,7 @@ function ItemOwnActions() {
   return (
     <div className="flex items-center justify-end gap-4">
       <Link
-        href={{ pathname: "/write", query: { edit: itemId } }}
+        href={{ pathname: "/write", query: { id: itemId } }}
         className="body2 text-neutral-400"
       >
         수정
