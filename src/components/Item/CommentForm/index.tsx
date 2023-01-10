@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { writeComment } from "apis/item";
 import { Button } from "components/@base";
 import useItemId from "hooks/useItemId";
@@ -5,6 +6,7 @@ import React, { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
 function CommentForm() {
+  const queryClient = useQueryClient();
   const itemId = useItemId();
   const [comment, setComment] = useState("");
 
@@ -19,6 +21,7 @@ function CommentForm() {
     try {
       await writeComment({ itemId, text: comment });
       setComment("");
+      await queryClient.invalidateQueries(["comments", itemId]);
     } catch (err) {
       console.error(err);
     }
