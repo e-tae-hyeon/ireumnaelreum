@@ -1,10 +1,27 @@
+import { writeComment } from "apis/item";
 import { Button } from "components/@base";
-import React from "react";
+import useItemId from "hooks/useItemId";
+import React, { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
 function CommentForm() {
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const itemId = useItemId();
+  const [comment, setComment] = useState("");
+
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setComment(e.target.value);
+  };
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!itemId || !comment) return;
+
+    try {
+      await writeComment({ itemId, text: comment });
+      setComment("");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -12,6 +29,8 @@ function CommentForm() {
       <h2 className="h3">멋진 이름을 지어주세요!</h2>
       <TextareaAutosize
         placeholder="어떤 이름이 좋을까요?"
+        value={comment}
+        onChange={onChange}
         className="p-4 border rounded-lg outline-none resize-none border-neutral-200"
         minRows={4}
       />

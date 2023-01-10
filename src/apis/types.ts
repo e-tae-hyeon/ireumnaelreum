@@ -8,6 +8,11 @@ export type GetItemsResult = {
   pageInfo: PageInfo;
 };
 
+export type WriteCommentParam = {
+  itemId: number;
+  text: string;
+};
+
 export type Item = {
   id: number;
   title: string;
@@ -36,4 +41,13 @@ export type Profile = {
 export type PageInfo = {
   endCursor: number;
   hasNextPage: boolean;
+};
+
+export type Comment = {
+  itemId: number;
+  text: string;
+  likes: number;
+  createdAt: string;
+  updatedAt: string;
+  user: User;
 };
