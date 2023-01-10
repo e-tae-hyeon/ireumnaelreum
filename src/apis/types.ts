@@ -44,10 +44,12 @@ export type PageInfo = {
 };
 
 export type Comment = {
+  id: number;
   itemId: number;
   text: string;
   likes: number;
   createdAt: string;
   updatedAt: string;
   user: User;
+  isLiked: boolean;
 };
