@@ -3,6 +3,11 @@ export type WriteItemParam = {
   body: string;
 };
 
+export type GetItemsResult = {
+  items: Item[];
+  pageInfo: PageInfo;
+};
+
 export type Item = {
   id: number;
   title: string;
@@ -21,4 +26,14 @@ export type ItemStats = {
 
 export type User = {
   id: number;
+  Profile: Profile;
+};
+
+export type Profile = {
+  nickname: string;
+};
+
+export type PageInfo = {
+  endCursor: number;
+  hasNextPage: boolean;
 };

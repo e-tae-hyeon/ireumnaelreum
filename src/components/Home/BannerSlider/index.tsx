@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 function BannerSlider() {
   return (
-    <div className="absolute inset-x-0 flex justify-center bg-primary">
+    <div className="flex justify-center bg-primary">
       <div className="w-full max-w-5xl">
         <Slider
           dots
