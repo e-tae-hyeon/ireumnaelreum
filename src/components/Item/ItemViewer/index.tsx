@@ -11,12 +11,12 @@ function ItemViewer() {
   const itemId = useItemId();
   const { me } = useMe();
 
-  const { data: item } = useQuery(["item"], () => getItem(itemId!), {
+  const { data: item } = useQuery(["item", itemId], () => getItem(itemId!), {
     enabled: !!itemId,
   });
 
   const { data: comments } = useQuery(
-    ["comments"],
+    ["comments", itemId],
     () => getComments(itemId!),
     {
       enabled: !!itemId,

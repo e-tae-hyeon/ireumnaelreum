@@ -36,3 +36,15 @@ export async function getComments(itemId: number) {
 
   return res.data;
 }
+
+export async function likeComment({
+  itemId,
+  commentId,
+}: {
+  itemId: number;
+  commentId: number;
+}) {
+  const res = await clinet.post(`/item/${itemId}/comment/${commentId}/like`);
+
+  return res.data;
+}
