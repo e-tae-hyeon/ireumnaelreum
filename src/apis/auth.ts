@@ -15,3 +15,9 @@ export async function logout() {
 
   return res.data;
 }
+
+export async function unregister() {
+  const res = await clinet.delete("/auth");
+
+  return res.data;
+}

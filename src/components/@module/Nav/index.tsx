@@ -24,10 +24,10 @@ const Nav = React.forwardRef<HTMLDivElement, Props>(({ isVisible }, ref) => {
       <Link href={`/user/${me?.userId}`} className="p-1">
         내가 작성한 글
       </Link>
+      <div className="p-1">서비스 소개</div>
       <Link href="/settings" className="p-1">
         설정
       </Link>
-      <div className="p-1">서비스 소개</div>
       <button type="button" onClick={logout} className="flex p-1">
         로그아웃
       </button>

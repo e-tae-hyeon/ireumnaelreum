@@ -23,7 +23,10 @@ function NicknameUpdateForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-4">
+    <form
+      onSubmit={onSubmit}
+      className="flex flex-col gap-4 pb-8 border-b border-neutral-200"
+    >
       <h2 className="h3">닉네임</h2>
       <Input
         placeholder="닉네임을 입력하세요! (10글자 이내)"
