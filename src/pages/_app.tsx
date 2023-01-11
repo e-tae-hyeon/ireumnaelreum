@@ -29,7 +29,18 @@ export default function App({ Component, pageProps }: AppProps) {
     };
   }, [router.events]);
 
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            retry: false,
+            refetchOnWindowFocus: false,
+            staleTime: 1000 * 5000,
+          },
+        },
+      })
+  );
 
   return (
     <>
