@@ -3,22 +3,20 @@ import { writeComment } from "apis/item";
 import { Button } from "components/@base";
 import useItemId from "hooks/useItemId";
 import useMe from "hooks/useMe";
-import useTriggerAuth from "hooks/useTriggerAuth";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
+import useAuthStore from "stores/useAuthStore";
 
 function CommentForm() {
   const { me } = useMe();
   const queryClient = useQueryClient();
   const itemId = useItemId();
   const [comment, setComment] = useState("");
-  const triggerAuth = useTriggerAuth();
-  const { asPath } = useRouter();
+  const { open } = useAuthStore();
 
   const onFocus = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (!me) {
-      triggerAuth(asPath);
+      open();
       e.target.blur();
     }
   };
@@ -29,6 +27,7 @@ function CommentForm() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!me) return open();
     if (!itemId || !comment) return;
 
     try {

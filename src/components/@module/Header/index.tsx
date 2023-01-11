@@ -3,10 +3,12 @@ import useMe from "hooks/useMe";
 import Link from "next/link";
 
 import React from "react";
+import useAuthStore from "stores/useAuthStore";
 import Menu from "../Menu";
 
 function Header() {
   const { me } = useMe();
+  const { open } = useAuthStore();
 
   return (
     <header className="flex items-center justify-between p-4">
@@ -19,9 +21,9 @@ function Header() {
           <Menu />
         </div>
       ) : (
-        <Link href="/auth" className="body1">
+        <button type="button" onClick={open} className="body1">
           로그인
-        </Link>
+        </button>
       )}
     </header>
   );

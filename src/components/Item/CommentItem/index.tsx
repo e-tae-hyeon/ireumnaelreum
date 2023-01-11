@@ -2,17 +2,22 @@ import { Comment } from "apis/types";
 import colors from "common/styles/colors";
 import { SvgIcon } from "components/@base";
 import useCommentLikeManager from "hooks/mutations/useCommentLikeManager";
+import useMe from "hooks/useMe";
 import React from "react";
+import useAuthStore from "stores/useAuthStore";
 
 type Props = {
   comment: Comment;
 };
 
 function CommentItem({ comment }: Props) {
+  const { me } = useMe();
   const { id, itemId, user, text, updatedAt, likes, isLiked } = comment;
   const { like } = useCommentLikeManager({ itemId, commentId: id });
+  const { open } = useAuthStore();
 
   const onClickLike = async () => {
+    if (!me) return open();
     if (isLiked) return;
     try {
       like();
