@@ -9,3 +9,9 @@ export async function checkMe(accessToken?: string) {
 
   return res.data;
 }
+
+export async function logout() {
+  const res = await clinet.delete("/auth/logout");
+
+  return res.data;
+}

@@ -1,3 +1,4 @@
+import useLogout from "hooks/useLogout";
 import useMe from "hooks/useMe";
 import Link from "next/link";
 import React from "react";
@@ -8,6 +9,7 @@ type Props = {
 
 const Nav = React.forwardRef<HTMLDivElement, Props>(({ isVisible }, ref) => {
   const { me } = useMe();
+  const logout = useLogout();
 
   if (!isVisible) return null;
 
@@ -26,7 +28,9 @@ const Nav = React.forwardRef<HTMLDivElement, Props>(({ isVisible }, ref) => {
         설정
       </Link>
       <div className="p-1">서비스 소개</div>
-      <div className="p-1">로그아웃</div>
+      <button type="button" onClick={logout} className="flex p-1">
+        로그아웃
+      </button>
     </div>
   );
 });
