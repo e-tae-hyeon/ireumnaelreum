@@ -19,7 +19,7 @@ function Header() {
           <Menu />
         </div>
       ) : (
-        <Link href={{ query: { mode: "auth" } }} className="body1">
+        <Link href="/auth" className="body1">
           로그인
         </Link>
       )}

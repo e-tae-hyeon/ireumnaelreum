@@ -1,4 +1,3 @@
-import { AuthModal } from "components/Auth";
 import React from "react";
 
 type Props = {
@@ -8,14 +7,9 @@ type Props = {
 
 function Layout({ width = "wide", children }: Props) {
   return (
-    <>
-      <div
-        className={`${width === "wide" ? "max-w-5xl" : "max-w-3xl"} mx-auto`}
-      >
-        {children}
-      </div>
-      <AuthModal />
-    </>
+    <div className={`${width === "wide" ? "max-w-5xl" : "max-w-3xl"} mx-auto`}>
+      {children}
+    </div>
   );
 }
 
