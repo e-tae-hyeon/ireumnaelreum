@@ -1,4 +1,4 @@
-import { Logotypo } from "components/@base";
+import { Button, Logotypo } from "components/@base";
 import useMe from "hooks/useMe";
 import Link from "next/link";
 
@@ -12,7 +12,12 @@ function Header() {
     <header className="flex items-center justify-between p-4">
       <Logotypo />
       {me ? (
-        <Menu />
+        <div className="flex items-center gap-4">
+          <Link href="/write" className="hidden lg:block">
+            <Button>작명 요청하기</Button>
+          </Link>
+          <Menu />
+        </div>
       ) : (
         <Link href={{ query: { mode: "auth" } }} className="body1">
           로그인

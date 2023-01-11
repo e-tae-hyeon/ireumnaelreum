@@ -8,18 +8,18 @@ function Menu() {
   const [isVisible, setIsVisible] = useState(false);
 
   const onClickMenu = () => {
-    setIsVisible(true);
+    if (!isVisible) setIsVisible(true);
   };
 
   useClickOutside(navRef, () => setIsVisible(false));
 
   return (
-    <>
+    <div ref={navRef} className="relative flex">
       <button type="button" onClick={onClickMenu}>
         <SvgIcon name="menu" />
       </button>
-      <Nav isVisible={isVisible} ref={navRef} />
-    </>
+      <Nav isVisible={isVisible} />
+    </div>
   );
 }
 
