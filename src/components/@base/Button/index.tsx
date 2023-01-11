@@ -2,7 +2,13 @@ import React from "react";
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   layout?: "fit" | "full";
-  theme?: "primary" | "secondary";
+  theme?: "primary" | "secondary" | "danger";
+};
+
+const themeMap = {
+  primary: "bg-primary text-white",
+  secondary: "bg-white text-black",
+  danger: "bg-red-500 text-white",
 };
 
 function Button({ layout = "fit", theme = "primary", ...rest }: Props) {
@@ -11,8 +17,8 @@ function Button({ layout = "fit", theme = "primary", ...rest }: Props) {
       type="button"
       {...rest}
       className={`${layout === "fit" ? "w-fit" : "w-full"} 
-      ${theme === "primary" ? "bg-primary text-white" : "bg-white text-black"}
-        px-4 py-2  rounded-lg body1`}
+      ${themeMap[theme]}
+        px-4 py-2 rounded-lg body1`}
     />
   );
 }

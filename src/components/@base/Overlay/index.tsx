@@ -16,7 +16,7 @@ function Overlay({ isVisible, onBackDrop }: Props) {
           animate={{ opacity: 0.8 }}
           exit={{ opacity: 0 }}
           onClick={onBackDrop}
-          className="fixed bg-black inset-0"
+          className="fixed inset-0 z-40 bg-black"
         />
       )}
     </AnimatePresence>
