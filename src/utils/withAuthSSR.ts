@@ -19,8 +19,16 @@ export default async function withAuthSSR(
 
       const tokens = await refresh(refreshToken);
 
-      nookies.set(ctx, "access_token", tokens.accessToken);
-      nookies.set(ctx, "refresh_token", tokens.refreshToken);
+      nookies.set(ctx, "access_token", tokens.accessToken, {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 3,
+        path: "/",
+      });
+      nookies.set(ctx, "refresh_token", tokens.refreshToken, {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+        path: "/",
+      });
 
       me = await checkMe(tokens.accessToken);
     } catch (e) {
