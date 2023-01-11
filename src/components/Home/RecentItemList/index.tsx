@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 
 function RecentItemList() {
   const { ref, inView } = useInView();
-  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
+  const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
     ["items"],
     ({ pageParam }) => getItems(pageParam),
     {
@@ -18,8 +18,11 @@ function RecentItemList() {
   );
 
   useEffect(() => {
-    if (hasNextPage && inView) fetchNextPage();
-  }, [inView, hasNextPage]);
+    if (!inView) return;
+    if (!hasNextPage) return;
+    if (isLoading) return;
+    fetchNextPage();
+  }, [inView, hasNextPage, isLoading]);
 
   const items = data?.pages.flatMap((P) => P.items);
 
@@ -29,7 +32,7 @@ function RecentItemList() {
       {items && (
         <>
           <ItemList items={items} />
-          <div ref={ref} />
+          <div ref={ref} className="h-20" />
         </>
       )}
     </div>
