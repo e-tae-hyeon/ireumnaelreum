@@ -1,3 +1,4 @@
+import useMe from "hooks/useMe";
 import Link from "next/link";
 import React from "react";
 
@@ -6,6 +7,8 @@ type Props = {
 };
 
 const Nav = React.forwardRef<HTMLDivElement, Props>(({ isVisible }, ref) => {
+  const { me } = useMe();
+
   if (!isVisible) return null;
 
   return (
@@ -15,6 +18,9 @@ const Nav = React.forwardRef<HTMLDivElement, Props>(({ isVisible }, ref) => {
     >
       <Link href="/write" className="p-1">
         작명 요청하기
+      </Link>
+      <Link href={`/user/${me?.userId}`} className="p-1">
+        내가 작성한 글
       </Link>
       <Link href="/settings" className="p-1">
         설정

@@ -7,7 +7,7 @@ function SettingsPage() {
     <Layout width="narrow">
       <ActionsHeader />
       <main className="flex flex-col gap-12 p-4">
-        <h1 className="h1">내 정보 수정</h1>
+        <h1 className="h2">내 정보 수정</h1>
         <NicknameUpdateForm />
       </main>
     </Layout>
