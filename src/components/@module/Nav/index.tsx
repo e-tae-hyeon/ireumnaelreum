@@ -16,7 +16,9 @@ const Nav = React.forwardRef<HTMLDivElement, Props>(({ isVisible }, ref) => {
       <Link href="/write" className="p-1">
         작명 요청하기
       </Link>
-      <div className="p-1">설정</div>
+      <Link href="/settings" className="p-1">
+        설정
+      </Link>
       <div className="p-1">서비스 소개</div>
       <div className="p-1">로그아웃</div>
     </div>
