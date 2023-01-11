@@ -2,13 +2,24 @@ import { useQueryClient } from "@tanstack/react-query";
 import { writeComment } from "apis/item";
 import { Button } from "components/@base";
 import useItemId from "hooks/useItemId";
+import useMe from "hooks/useMe";
 import React, { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
+import useAuthStore from "stores/useAuthStore";
 
 function CommentForm() {
+  const { me } = useMe();
   const queryClient = useQueryClient();
   const itemId = useItemId();
   const [comment, setComment] = useState("");
+  const { open } = useAuthStore();
+
+  const onFocus = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (!me) {
+      open();
+      e.target.blur();
+    }
+  };
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
@@ -16,6 +27,7 @@ function CommentForm() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!me) return open();
     if (!itemId || !comment) return;
 
     try {
@@ -34,6 +46,7 @@ function CommentForm() {
         placeholder="어떤 이름이 좋을까요?"
         value={comment}
         onChange={onChange}
+        onFocus={onFocus}
         className="p-4 border rounded-lg outline-none resize-none border-neutral-200"
         minRows={4}
       />

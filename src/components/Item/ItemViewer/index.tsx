@@ -3,6 +3,7 @@ import { getComments, getItem } from "apis/item";
 import useItemId from "hooks/useItemId";
 import useMe from "hooks/useMe";
 import React from "react";
+import formatDate from "utils/formatDate";
 import CommentForm from "../CommentForm";
 import CommentList from "../CommentList";
 import ItemOwnActions from "../ItemOwnActions";
@@ -37,7 +38,7 @@ function ItemViewer() {
         <div className="flex items-center gap-1 body1">
           <span>{user.Profile.nickname}</span>
           <span>·</span>
-          <span className="text-neutral-400">{updatedAt}</span>
+          <span className="text-neutral-400">{formatDate(updatedAt)}</span>
         </div>
       </div>
       <p className="min-h-[8rem]">{body}</p>

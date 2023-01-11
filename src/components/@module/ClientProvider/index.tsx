@@ -1,3 +1,4 @@
+import { AuthModal } from "components/Auth";
 import React from "react";
 import GlobalDialog from "../GlobalDialog";
 
@@ -10,6 +11,7 @@ function ClientProvider({ children }: Props) {
     <>
       {children}
       <GlobalDialog />
+      <AuthModal />
     </>
   );
 }
