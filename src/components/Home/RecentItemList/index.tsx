@@ -26,8 +26,12 @@ function RecentItemList() {
   return (
     <div className="flex flex-col gap-4">
       <h3 className="h3">멋진 이름을 기다리고 있어요!</h3>
-      {items && <ItemList items={items} />}
-      <div ref={ref} />
+      {items && (
+        <>
+          <ItemList items={items} />
+          <div ref={ref} />
+        </>
+      )}
     </div>
   );
 }

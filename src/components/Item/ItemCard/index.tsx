@@ -27,4 +27,4 @@ function ItemCard({ id, author, title, body, date }: Props) {
   );
 }
 
-export default ItemCard;
+export default React.memo(ItemCard);

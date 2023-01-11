@@ -3,7 +3,7 @@ import colors from "common/styles/colors";
 import { SvgIcon } from "components/@base";
 import useCommentLikeManager from "hooks/mutations/useCommentLikeManager";
 import useMe from "hooks/useMe";
-import React from "react";
+import React, { useCallback } from "react";
 import useAuthStore from "stores/useAuthStore";
 import formatDate from "utils/formatDate";
 
@@ -17,7 +17,7 @@ function CommentItem({ comment }: Props) {
   const { like } = useCommentLikeManager({ itemId, commentId: id });
   const { open } = useAuthStore();
 
-  const onClickLike = async () => {
+  const onClickLike = useCallback(async () => {
     if (!me) return open();
     if (isLiked) return;
     try {
@@ -25,7 +25,7 @@ function CommentItem({ comment }: Props) {
     } catch (err) {
       console.error(err);
     }
-  };
+  }, [me, isLiked]);
 
   return (
     <div className="flex flex-col gap-4 py-4 border-b border-neutral-200">
@@ -50,4 +50,4 @@ function CommentItem({ comment }: Props) {
   );
 }
 
-export default CommentItem;
+export default React.memo(CommentItem);
