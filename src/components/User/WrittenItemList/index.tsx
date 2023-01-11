@@ -6,6 +6,7 @@ import React from "react";
 function WrittenItemList() {
   const { data: myItems } = useQuery(["myItems"], getMyItems, {
     initialData: [],
+    staleTime: 0,
   });
 
   return (

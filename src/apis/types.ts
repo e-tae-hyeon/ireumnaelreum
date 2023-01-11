@@ -57,3 +57,8 @@ export type Comment = {
   user: User;
   isLiked: boolean;
 };
+
+export type Tokens = {
+  accessToken: string;
+  refreshToken: string;
+};
