@@ -1,9 +1,23 @@
-import React from "react";
+import { getItem } from "apis/item";
+import useItemId from "hooks/useItemId";
+import React, { useEffect } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import useWriteStore from "stores/useWriteStore";
 
 function WriteForm() {
-  const { form, changeForm } = useWriteStore();
+  const itemId = useItemId();
+  const { form, changeForm, clearForm } = useWriteStore();
+
+  useEffect(() => {
+    clearForm();
+    const fetchForm = async (id: number) => {
+      const item = await getItem(id);
+      changeForm({ name: "title", value: item.title });
+      changeForm({ name: "body", value: item.body });
+    };
+    if (!itemId) return;
+    fetchForm(itemId);
+  }, [itemId]);
 
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -19,6 +33,7 @@ function WriteForm() {
         placeholder="제목을 입력해주세요!"
         value={form.title}
         onChange={onChange}
+        maxLength={35}
         className="py-4 border-b outline-none h3 placeholder:text-neutral-200 border-neutral-200"
       />
       <TextareaAutosize
