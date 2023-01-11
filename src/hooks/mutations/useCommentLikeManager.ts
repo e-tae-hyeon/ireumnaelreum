@@ -13,13 +13,15 @@ function useCommentLikeManager({ itemId, commentId }: Props) {
   const { mutate: like } = useMutation(
     () => likeComment({ itemId, commentId }),
     {
-      onSuccess: (data: number) => {
+      onMutate: () => {
         queryClient.setQueryData(
           ["comments", itemId],
           (old: Comment[] | undefined) => {
             if (!old) return;
             const newData = old.map((C) =>
-              C.id === commentId ? { ...C, isLiked: true, likes: data } : C
+              C.id === commentId
+                ? { ...C, isLiked: true, likes: C.likes + 1 }
+                : C
             );
             return newData;
           }
