@@ -5,6 +5,7 @@ import useCommentLikeManager from "hooks/mutations/useCommentLikeManager";
 import useMe from "hooks/useMe";
 import React from "react";
 import useAuthStore from "stores/useAuthStore";
+import formatDate from "utils/formatDate";
 
 type Props = {
   comment: Comment;
@@ -30,7 +31,7 @@ function CommentItem({ comment }: Props) {
     <div className="flex flex-col gap-4 py-4 border-b border-neutral-200">
       <div className="flex flex-col gap-2">
         <div className="body2">{user.Profile.nickname}</div>
-        <div className="caption text-neutral-400">{updatedAt}</div>
+        <div className="caption text-neutral-400">{formatDate(updatedAt)}</div>
       </div>
       <div className="body1">{text}</div>
       <div className="flex items-center justify-between">

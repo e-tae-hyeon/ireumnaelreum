@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import formatDate from "utils/formatDate";
 
 type Props = {
   id: number;
@@ -20,7 +21,7 @@ function ItemCard({ id, author, title, body, date }: Props) {
         <div className="truncate body2 text-neutral-400">{body}</div>
       </div>
       <div className="caption text-neutral-400">
-        {author} | {date}
+        {author} | {formatDate(date)}
       </div>
     </Link>
   );
