@@ -1,4 +1,3 @@
-import { KAKAO_REDIRECT_URI } from "common/constants/string";
 import { SvgIcon } from "components/@base";
 import React from "react";
 
@@ -10,7 +9,7 @@ type Props = {
 
 const providerMap = {
   kakao: {
-    to: `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID}&redirect_uri=${KAKAO_REDIRECT_URI}`,
+    to: `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_CALLBACK}`,
     icon: "kakao" as const,
     description: "카카오로 시작하기",
     bgColor: "#FEE500",
